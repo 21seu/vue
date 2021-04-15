@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的事件绑定v-on</title>
+</head>
+<body>
+<div id="app">
+    <!--
+        js事件三要素：
+            1、事件源：发生事件的源头称为事件，一般指html标签
+            2、事件： 发生特定的动作，onclick单击  dbclick双击  onkeyup...
+            3、监听器：事件处理程序，事件处理函数  function{}
+
+        vue事件：v-on:
+            1、vue给对应的标签绑定事件：v-on进行事件的绑定  v-on:事件名
+            2、vue中事件处理函数统一声明再vue实例中的methods属性
+    -->
+    <input type="button" value="点我" v-on:click="clickMe" v-on:mouseover="overMe"/>
+</div>
+</body>
+</html>
+<!--引入vue.js文件-->
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app', //指定vue作用范围
+        data: {  //用来个vue实例绑定一系列数据
+            msg: "hello vue"
+        },
+        methods: {  //用来给当前vue实例对象，声明一些列函数
+            clickMe: function () {
+                alert("点我！！！");
+            },
+            overMe:function () {
+                alert("鼠标移入了！！！");
+            }
+        }
+    })
+</script>

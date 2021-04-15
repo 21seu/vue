@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show、v-if指令的使用</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        v-if、v-show：用来控制页面中标签是否展示和隐藏  使用：标签 v-if="true|false" v-show="true|false"
+        区别：
+            v-show：底层在控制页面标签是否展示时，使用的是css中的display属性来控制标签的展示和隐藏  推荐使用：数据量比较大，控制显示极其频繁
+            v-if：底层再控制页面标签是否展示时，通过对dom元素删除和添加来控制标签的展示隐藏
+    -->
+    <h1 v-show="isShow">{{counter}}</h1>
+    <h1 v-if="isShow">{{counter}}</h1>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "hello vue",
+            counter: "我爱vue",
+            isShow: false
+        },
+        methods: {}
+    })
+</script>

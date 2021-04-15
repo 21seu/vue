@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show、v-if显示隐藏案例（三）</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        v-bind:绑定   作用：用来将html标签中相关属性绑定到vue实例中，日后通过vue实例中数据的改变，影响到对应标签中属性值变化
+                     语法：v-bind:属性  ====>  简化写法：:属性名
+    -->
+
+    <img v-bind:src="imageSrc" :width="width" height="300px" v-bind:alt="tip"/>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "hello vue",
+            imageSrc: "../img1.jpg",
+            width: 200,
+            tip: "这是一张图片..."
+        },
+        methods: {}
+    })
+</script>

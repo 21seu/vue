@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的事件绑定v-on简化写法@</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{age}}</h2>
+    <!--
+        vue中绑定事件  v-on：事件名 ===> @
+    -->
+    <input type="button" value="点我改变年龄" @click="changeAge"/>
+</div>
+</body>
+</html>
+<!--引入vue.js文件-->
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app', //指定vue作用范围
+        data: {  //用来个vue实例绑定一系列数据
+            msg: "hello vue",
+            age: 23
+        },
+        methods: {
+            changeAge: function () {  //定义事件  简化写法,见changeAge2
+                this.age++;
+            },
+            changeAge2() { //es6语法
+
+            }
+        }
+    })
+</script>

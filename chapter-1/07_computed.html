@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>currentTime:{{currentTime()}}</p>
+    <p>currentTime:{{currentTime1}}</p>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        methods: {
+            currentTime: function () {
+                return Date.now();
+            }
+        },
+        computed: { //计算属性  如果方法名重名则只会调用methods中的方法
+            currentTime1: function () {
+                this.message;
+                return Date.now(); //这个值一般不会变，但是如果currentTime1里面的数据被刷新了会重新进行计算
+            }
+        }
+    });
+</script>
+</body>
+</html>

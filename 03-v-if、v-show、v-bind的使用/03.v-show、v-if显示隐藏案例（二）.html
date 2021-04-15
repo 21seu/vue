@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show、v-if显示隐藏案例（二）</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <img @mousemove="hide" src="../img1.jpg" style="width: 500px;height: 600px" v-show="isShow">
+    <img @mousemove="isShow = false" src="../img1.jpg" style="width: 500px;height: 600px" v-show="isShow">
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "hello vue",
+            count: 0,
+            isShow: true
+        },
+        methods: {
+            hide() {
+                this.isShow = false;
+            }
+        }
+    })
+</script>

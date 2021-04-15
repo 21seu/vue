@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用v-text和v-html</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+    <!--vue提供两个指令：v-text v-html 都可以直接根据属性名获取data中数据渲染到指定标签内-->
+
+    <!--v-text-->
+    <h2><span v-text="msg"></span> 您好</h2>
+
+    <!--
+        v-text：{{}}取值区别
+            1、使用{{}}取值不会将标签原始数据覆盖  v-text获取数据会将标签中原始内容覆盖
+            2、v-text获取数据时不会出现插值闪烁  {{属性名}} ===> 插值表达式：容易出现插值闪烁（当网络条件不好的情况下使用
+            这种方式会出现闪烁） 可以使用chrome浏览器network中修改网络来测试
+    -->
+
+    <h2 v-html="content"></h2>
+    <h2 v-text="content"></h2>
+
+    <!--
+        v-text：将获取数据直接以文本形式渲染到标签内部  innerText(js)
+        v-html：将获取数据中含有html标签解析之后渲染到对应标签内部  innerHtml(js)
+    -->
+</div>
+</body>
+</html>
+<!--引入vue.js文件-->
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el:'#app', //指定vue作用范围
+        data:{  //用来个vue实例绑定一系列数据
+            msg:"hello vue",
+            content:"<a href='www.github.com'>欢迎来到github</a>"
+        }
+    })
+</script>

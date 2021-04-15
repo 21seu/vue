@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的事件绑定v-on</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{age}}</h2>
+    <!--
+        vue事件：
+            1、使用v-on事件名
+            2、函数名统一定义在vue实例中methods 属性中
+    -->
+    <input type="button" value="点我给年龄+1" v-on:click="incrementAge"/>
+    <input type="button" value="点我给年龄-1" v-on:click="decrementAge"/>
+</div>
+</body>
+</html>
+<!--引入vue.js文件-->
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app', //指定vue作用范围
+        data: {  //用来个vue实例绑定一系列数据
+            msg: "hello vue",
+            age: 23
+        },
+        methods: {  //用来给当前vue实例对象，声明一些列函数
+            incrementAge: function () {
+                console.log(this);
+                if (this.age >= 120) return
+                this.age++;
+            },
+            decrementAge: function () {
+                if (this.age < 2) {
+                    return
+                }
+                this.age--;
+            }
+        }
+    })
+</script>

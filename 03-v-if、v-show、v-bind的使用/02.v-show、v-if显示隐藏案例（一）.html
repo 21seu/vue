@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show、v-if显示隐藏案例</title>
+</head>
+<body>
+<div id="app">
+    <h2 v-text="msg" v-if="isShow"></h2>
+
+    <input type="button" value="显示/隐藏" @click="clickMe"/>
+    <!--<input type="button" value="隐藏" @click="clickMe"/>-->
+    <input type="button" value="切换显隐的另一种方法" @click="isShow = !isShow">
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "hello vue",
+            count: 0,
+            isShow: true
+        },
+        methods: {
+            clickMe() {
+                if (this.count % 2 !== 0) {
+                    this.isShow = false;
+                    this.count++;
+                } else {
+                    this.isShow = true;
+                    this.count++;
+                }
+            }
+        }
+    })
+</script>
