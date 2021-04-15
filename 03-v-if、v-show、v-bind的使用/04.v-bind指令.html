@@ -2,8 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>v-show、v-if显示隐藏案例（三）</title>
+    <title>v-bind指令</title>
 </head>
+<style>
+    .aa {
+        border: 5px red solid;
+    }
+
+    .bb {
+        border: 5px darkorange solid;
+    }
+</style>
 <body>
 <div id="app">
     <h2>{{msg}}</h2>
@@ -13,7 +22,7 @@
                      语法：v-bind:属性  ====>  简化写法：:属性名
     -->
 
-    <img v-bind:src="imageSrc" :width="width" height="300px" v-bind:alt="tip"/>
+    <img :class="isClass ? 'aa' : 'bb'" v-bind:src="imageSrc" :width="width" height="300px" v-bind:alt="tip"/>
 </div>
 </body>
 </html>
@@ -25,7 +34,9 @@
             msg: "hello vue",
             imageSrc: "../img1.jpg",
             width: 200,
-            tip: "这是一张图片..."
+            tip: "这是一张图片...",
+            //isClass:"aa"
+            isClass: false //true 红色边框 false 橙色边框
         },
         methods: {}
     })

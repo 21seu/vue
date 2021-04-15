@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind案例：实现图片移入移出切换效果</title>
+</head>
+<style>
+    .aa {
+        border: 5px red solid;
+    }
+
+    .bb {
+        border: 5px darkorange solid;
+    }
+</style>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        vue属性绑定 v-bind 简化 :
+    -->
+    <img :class="isClass" :title="title" v-bind:src="imageSrc" :width="width" height="300px" @mousemove="mouseOver"
+         @mouseout="mouseOut"/>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "hello vue",
+            imageSrc: "../img1.jpg",
+            isClass: "aa",
+            title: "图片1"
+        },
+        methods: {
+            mouseOver() {
+                this.imageSrc = "../img1.jpg";
+                this.isClass = "bb";
+                this.title = "图片2"
+            },
+            mouseOut() {
+                this.imageSrc = "../img2.jpg";
+                this.isClass = "aa";
+                this.title = "图片1"
+            }
+        }
+    })
+</script>
