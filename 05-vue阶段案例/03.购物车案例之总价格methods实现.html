@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>购物车案例</title>
+    <title>购物车案例之总价格methods实现</title>
 </head>
 <body>
 <div id="app">
@@ -27,6 +27,12 @@
         </tr>
 
     </table>
+    <!--
+        使用methods方法完成计算业务：
+        缺点：
+            1、只要调用了一次计算方法，整个计算方法就会执行一次，如果在一个页面中多次使用到计算结果，可能会造成重复计算，导致页面
+               加载性能变慢。
+    -->
     <h3>总价格：{{getTotalPrice()}}</h3>
 </div>
 </body>

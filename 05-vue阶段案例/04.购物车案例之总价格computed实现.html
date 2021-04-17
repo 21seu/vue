@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>购物车案例</title>
+    <title>购物车案例之总价格computed实现</title>
 </head>
 <body>
 <div id="app">
@@ -27,7 +27,13 @@
         </tr>
 
     </table>
-    <h3>总价格：{{getTotalPrice()}}</h3>
+    <!--
+        使用computed方法完成计算业务：
+        computed：vue官方提供的一个计算属性   ！！！记住：是一个属性
+            作用：在完成某种业务时，往往页面结果需要经过多次计算才能获取，computed属性就是用来完成业务结果多次计算
+            好处：在完成计算的同时也会将本次计算结果进行缓存，如果数据没有发生变化，在页面中多次使用，计算方法仅仅计算一次
+    -->
+    <h3>总价格：{{totalPrice}}</h3>
 </div>
 </body>
 </html>
@@ -52,8 +58,10 @@
                     return;
                 }
                 this.items[index].count--;
-            },
-            getTotalPrice() {
+            }
+        },
+        computed: { //计算属性：用来书写计算相关方法(好处：只进行一次计算，后面使用直接使用它的缓存)
+            totalPrice() {
                 var totalPrice = 0;
                 for (let val of this.items) {
                     console.log("debug=====>", val);
