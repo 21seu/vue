@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        v-model：用来绑定form表单标签中的value属性交给vue实例进行管理 input select checkbox button
+        v-bind：用来绑定html标签中属性交给vue实例管理
+    -->
+    <input type="text" v-model="msg"/>
+</div>
 </body>
 </html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "hello vue",
+            user: {name: "小王", age: 23, birthday: "2021-4-14"},
+            schools: ["北京大学", "天津大学", "浙江大学", "南京大学"],
+            users: [
+                {id: "1", name: "小王", age: 21, bir: "2021-4-4"},
+                {id: "2", name: "小朱", age: 24, bir: "2021-4-12"},
+                {id: "3", name: "小红", age: 18, bir: "2021-4-8"},
+            ]
+        },
+        methods: {}
+    })
+</script>
