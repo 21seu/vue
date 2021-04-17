@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>备忘录案例</title>
+</head>
+<body>
+<div id="app">
+    输入备忘录内容：<input type="text" placeholder="输入内容" v-model="info"/>
+    <input type="button" value="添加" @click="addContent"><br>
+
+    <ul v-show="contents.length != 0">
+        <li v-for="(item,index) in contents">{{index+1}}、{{item}} <a href="javascript:;"
+                                                                     @click="deleteContent(index)">删除</a></li>
+    </ul>
+    <h5 v-show="contents.length == 0" style="color: red">当前备忘录中还没有任何内容，请添加</h5>
+
+    <h3>当前备忘录中共：{{contents.length}} 条</h3>
+    <input type="button" value="清空备忘录" @click="deleteAll"/>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app", //代表vue实例的作用范围
+        data: {
+            msg: "备忘录功能实现",
+            contents: [
+                "今天要好好学习", "今天要去市场买菜"
+            ],
+            info: ""
+        },
+        methods: {  //在vue实例中定义相关函数
+            addContent() { //添加备忘信息
+                //没有内容的时候不能添加数据
+                if (this.info === "") {
+                    alert("请输入备忘内容");
+                    return;
+                }
+                this.contents.push(this.info);
+                //清空一下info属性
+                this.info = "";
+            },
+            deleteContent(index) { //删除指定元素
+                this.contents.splice(index, 1);
+            },
+            deleteAll() { //清空备忘录
+                this.contents = [];
+            }
+        }
+    })
+</script>
