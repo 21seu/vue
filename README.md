@@ -1,7 +1,7 @@
 # vue
 ## 1、vue引言
 
-![image-20210417124205955](vue\typora-user-images\image-20210417124205955.png)
+<img src="https://github.com/21seu/vue/blob/master/typora-user-images/image-20210417124205955.png"/>
 
 > `渐进式` JavaScript 框架   --摘自官网
 
