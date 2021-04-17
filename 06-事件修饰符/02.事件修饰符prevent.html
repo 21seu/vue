@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符prevent</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        时间修饰符：用来和事件连用，用来决定事件触发的条件和决定事件触发机制
+        .stop   停止事件冒泡
+        .prevent    阻止默认行为
+        .self
+        .once
+        注意：事件修饰符可以多个连续使用
+    -->
+    <!--默认行为：会根据href的链接自动跳转   prevent则可以阻止这种默认行为-->
+    <a href="http://www.baidu.com" @click.prevent="search">百度一下</a>
+    <!--当然也可以这样-->
+    <a href="javascript:;" @click="search">百度一下</a>
+    <a href="javascript:void(0);" @click="search">百度一下</a>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "事件修饰符"
+        },
+        methods: {
+            search() {
+                alert("a click!!!");
+            }
+        },
+        computed: {}
+    })
+</script>

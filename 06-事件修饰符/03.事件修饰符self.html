@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>事件修饰符stop</title>
+    <title>事件修饰符self</title>
 </head>
 <body>
 <div id="app">
@@ -11,16 +11,16 @@
     <!--
         时间修饰符：用来和事件连用，用来决定事件触发的条件和决定事件触发机制
         .stop   停止事件冒泡
-        .prevent
-        .self
+        .prevent    阻止默认行为
+        .self   只触发自身行为
         .once
         注意：事件修饰符可以多个连续使用
     -->
-    <!--.stop：用来阻止事件的冒泡-->
-    <!--这里的点击事件（事件的冒泡）会有问题：你点击子div 父div的事件也会触发-->
-    <div style="width: 200px;height: 200px;background: red" @click="parent">
+    <!--.self：只监听自身标签触发的对应事件-->
+    <div style="width: 200px;height: 200px;background: aqua" @click.self="parent">
         <!--解决：对孩子中单击事件进行修饰：不进行事件的冒泡处理 .stop-->
-        <div style="width: 100px;height: 100px;background: green" @click.stop.once="child"></div>
+        <div style="width: 100px;height: 100px;background: green" @click="child"></div>
+        <div style="width: 100px;height: 100px;background: brown" @click="child"></div>
     </div>
 </div>
 </body>
