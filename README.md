@@ -1,7 +1,11 @@
 # vue
 ## 1、vue引言
 
+<<<<<<< HEAD
 ![image-20210417124205955](..\vue-first\typora-user-images\image-20210417124205955.png)
+=======
+<img src="https://github.com/21seu/vue/blob/master/typora-user-images/image-20210417124205955.png"/>
+>>>>>>> f1cb595cdd5e0a68debe7cae15c9b9b51b10b76a
 
 > `渐进式` JavaScript 框架   --摘自官网
 
