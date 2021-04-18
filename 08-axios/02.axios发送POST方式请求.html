@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios发送POST方式请求</title>
+</head>
+<body>
+
+</body>
+</html>
+<!--引入axios异步请求核心js文件-->
+<script src="../axios.min.js"></script>
+<!--测试异步请求-->
+<script>
+
+    //发送axios POST方式请求
+    axios.post("http://localhost:8989/user", {
+        name: "小刘",
+        age: 23,
+        bir: "2021-04-18"
+    }).then(response => {
+        console.log(response.data);
+    });
+</script>
