@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的按键修饰符</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+
+    <!--
+        案件修饰符：用来键盘上按键事件进行连用，用来修饰键盘上特定的按键来触发对应的事件
+        .enter
+        .tab
+        .delete（捕获”删除“和“退格”键）
+        .esc
+        .space
+        .up
+        .down
+        .left
+        .right
+    -->
+    <!--.enter 回车键修饰符-->
+    <input type="text" v-model="msg" @keyup.enter.delete.up="test"/>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "按键修饰符"
+        },
+        methods: {
+            test() {
+                console.log("test");
+            }
+        }
+    })
+</script>
