@@ -78,9 +78,69 @@
 
 ```markdown
 # 总结:
-			1.vue实例(对象)中el属性: 	代表Vue的作用范围  日后在Vue的作用范围内都可以使用Vue的语法
-			2.vue实例(对象)中data属性: 用来给Vue实例绑定一些相关数据, 绑定的数据可以通过{{变量名}}在Vue作用范围内取出
-			3.在使用{{}}进行获取data中数据时,可以在{{}}中书写表达式,运算符,调用相关方法,以及逻辑运算等
-			4.el属性中可以书写任意的CSS选择器[jquery选择器],但是在使用Vue开发是推荐使用 id选择器  注意: el属性值不能指定body或html标签
+	1.vue实例(对象)中el属性: 	代表Vue的作用范围  日后在Vue的作用范围内都可以使用Vue的语法
+	2.vue实例(对象)中data属性: 用来给Vue实例绑定一些相关数据, 绑定的数据可以通过{{变量名}}在Vue作用范围内取出
+	3.在使用{{}}进行获取data中数据时,可以在{{}}中书写表达式,运算符,调用相关方法,以及逻辑运算等
+	4.el属性中可以书写任意的CSS选择器[jquery选择器],但是在使用Vue开发是推荐使用 id选择器  注意: el属性值不能指定body或html标签
 ```
 
+
+
+## 3、v-text和v-html
+
+### 3.1 v-text
+
+> `v-text` 用来获取data中的数据，将数据以文本形式渲染到指定标签内部，类似于js中的innerText
+
+```html
+<div id="app" class="aa">
+    <span >{{ message }}</span>
+    <span v-text="message"></span>
+</div>
+
+<!--引入vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"vue欢迎您"
+        }
+    })
+</script>
+```
+
+```markdown
+# 总结
+    1.{{}}(插值表达式)和v-text获取数据的区别在于 
+ 	a.使用v-text取值会将标签中原有的数据覆盖 使用插值表达式的形式不会覆盖标签原有的数据
+	b.使用v-text可以避免在网络环境较差的情况下出现插值闪烁
+```
+
+
+
+### 3.2 v-html
+
+> `v-html` 用来获取data中的数据，将含有的html标签先解析再渲染到指定标签内部，类似于js中的innerHTML
+
+```html
+<div id="app" class="aa">
+        <span>{{message}}</span>
+        <br>
+        <span v-text="message"></span>
+
+        <br>
+        <span v-html="message">xxxxxx</span>
+</div>
+
+<!--引入vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"<a href=''>vue欢迎您</a>"
+        }
+    })
+</script>
+```
