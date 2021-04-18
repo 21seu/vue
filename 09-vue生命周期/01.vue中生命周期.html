@@ -30,8 +30,25 @@
             console.log("beforeMount==>", document.getElementById("sp").innerText);//vue 生命周期
         }
             2、运行阶段
-
+            //第五个执行的生命周期函数，在这个函数执行的时候，vue实例中data数据发生改变，但是页面中的数据还是原始数据
+        beforeUpdate() {
+            console.log("beforeUpdate====>", this.msg);//vue 的生命周期啦啦啦
+            console.log("beforeUpdate====>", document.getElementById("sp").innerText);//生命周期
+        },
+        //第六个执行的生命周期函数，在这个函数执行的时候，vue实例中data数据已经和页面中的数据一致了
+        updated() {
+            console.log("updated====>", this.msg);//vue 的生命周期啦啦啦
+            console.log("updated====>", document.getElementById("sp").innerText);//vue 的生命周期啦啦啦
+        }
             3、销毁阶段
+            //第七个执行的生命周期函数：在这个函数执行的时候,vue实例仅仅是开始销毁 data methods ....
+        beforeDestroy() {
+            console.log("beforeDestroy====>", this.msg);
+        },
+        //第八个执行的生命周期函数：在这个函数执行的时候，vue实例上的 events child component（子组件） listener监听机制
+        destroyed() {
+            console.log("destroyed====>", this.msg);
+        }
     -->
 </div>
 </body>
