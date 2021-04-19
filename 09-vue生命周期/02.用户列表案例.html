@@ -103,10 +103,13 @@
             },
 
             deleteEmployee(id) {
-                axios.post('http://localhost:8989/del/' + id).then(response => {
-                    this.employees = response.data;
-                    axios.get('http://localhost:8989/emp').then(response => this.employees = response.data);
-                })
+                if (confirm("您确定要删除这条记录吗")) {
+                    axios.post('http://localhost:8989/del/' + id).then(response => {
+                        this.employees = response.data;
+                        axios.get('http://localhost:8989/emp').then(response => this.employees = response.data);
+                    })
+                }
+
             },
             restUserData() {
                 this.employee = [];
