@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>es6基础语法</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+</div>
+</body>
+</html>
+<!--引入vue.js文件-->
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "es6语法解析"
+        }
+    });
+
+    //es6新特性：Ecmascript5 ====> es5  Ecmascript6 ====> es6(javascript6.x)
+
+    //1、变量声明        var     let     const
+    //var 使用这个关键字声明变量是全局变量，出现变量混淆
+    //let 作用：用来声明一个局部变量 作用范围：从定义处开始，到定义的代码块结束
+    //const：作用：用来定义一个常量 作用：变量一旦被定义不能被修改
+    function test() {
+        for (var i = 0; i < 10; i++) {
+            console.log("function inner====>", i);
+        }
+        console.log("function out====>", i);// var->10 let->报错
+
+        const name = "小刘";
+        //name = "小子";  Attempt to assign to const or readonly variable
+        const user = {};//修饰对象的话，对象的地址不能改变，但是对象中的内容可以随意修改
+    }
+
+    test();
+
+
+    //2、字符串模板  通过反引号使用字符串模板 ``
+    let html = "<div>" +
+        "<h1>我的html标签</h1>" +
+        "<input type='button' value='我是一个按钮'/>" +
+        "<button>我也是一个按钮</button>" +
+        "</div>";
+    //跟上面比的好处，可想而知！！！
+    let html2 = `<h2>html2</h2>
+    <input type="button" value="我是一个按钮"/>
+    <button> 我也是一个按钮</button>`;
+
+    //3、es6d的箭头函数  ()=>{}   是function(){}的简化
+    //注意：匿名函数存在自己的this，箭头函数没有自己的this
+
+    //4、es 对象定义扩展 当对象属性名和属性赋值变量名一致时，可以省略变量名不写
+    let name = "zhangsan";
+    let age = 23;
+    let birthday = "2021-01-01";
+    const user = {name: "zhangsan", age: 23, birthday: "2021-01-01"};
+    //这是es5对象定义方式
+    const user2 = {name: name, age: age, birthday: birthday};
+    //es6对象定义方式（新）
+    const user3 = {name, age, birthday};
+    console.log("user3", user3);
+</script>
