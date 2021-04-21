@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue局部组件的使用2</title>
+</head>
+<body>
+<div id="app">
+    <!--使用局部组件-->
+    <login></login>
+</div>
+</body>
+</html>
+<template id="loginTemplate">
+    <div>
+        <h3>用户登录</h3>
+        <button>+</button>
+    </div>
+</template>
+<script src="../vue.js"></script>
+<script>
+
+    //定义登录组件配置对象
+    const login = {
+        template: "#loginTemplate"
+    }
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        computed: {},
+        components: {
+            login,
+        }
+    })
+</script>

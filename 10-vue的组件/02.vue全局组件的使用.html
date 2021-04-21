@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue全局组件的使用</title>
+</head>
+<body>
+<div id="app">
+    <!--使用全局组件：根据组件名称使用全局组件-->
+    <login></login>
+    <login></login>
+
+    <register></register>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+
+    //开发全局组件
+    //参数1：组件名称  参数2：指定组件内容的配置对象
+    Vue.component('login', {
+        template: "<div><h1>用户登录</h1></div>"  //template：模板 用来书写该组件中的html代码；注意：template必须存在一个根容器，有且只有一个根容器
+    });
+
+    Vue.component('register', {
+        template: "<div><h3>用户注册</h3></div>"
+    });
+
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {},
+        computed: {}
+    })
+</script>
