@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件的回顾</title>
+</head>
+<body>
+<div id="app">
+
+    <!--使用全局组件-->
+    <users-list></users-list>
+    <!--使用局部组件-->
+    <inner-list></inner-list>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script src="../axios.min.js"></script>
+<script>
+    //vue中组件  全局组件：直接注册vue实例根，在所有组件中可用  局部组件：注册在vue实例内部，局部组件只能在组件内部可用
+
+    //定义一个全局组件 注意：在定义组件名称时，如果使用了驼峰命名法，在使用组件时，单词必须全部小写，同时使用'-'分隔使用
+    Vue.component('usersList', {
+        template: '<div><h2>用户列表</h2></div>',
+        data() {
+            return {
+                count: 1
+            }
+        }
+    })
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        components: {
+            innerList: {template: `<div><h3>局部组件</h3></div>`}
+        }
+    })
+</script>

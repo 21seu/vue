@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件间数据传递之props（父组件向子组件传递静态数据）</title>
+</head>
+<body>
+<div id="app">
+    <!--使用login组件 传递静态数据：在组件上传递写死数据-->
+    <login title="欢迎访问"></login>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+
+    //定义组件配置对象
+    const login = {
+        template: `
+            <div><h3>登录界面{{title}}---{{loginTitle}}</h3></div>`,
+        data() { //注意：在props中定义数据，不能在data中重复定义，如果重复定义优先使用props中的数据为主
+            return {
+                //title:'我是登录页面，请在这里登录' //The data property "title" is already declared as a prop. Use prop default value instead.
+                loginTitle: this.title
+            }
+        },
+        props: ['title']//用来接收组件传递数据
+    }
+
+    //如何实现父组件向子组件内部传递数据，并将数据在子组件中进行展示？ 在vue中父组件向子组件传递数据可以使用：prop属性完成数据的传递
+    const app = new Vue({
+        el: "#app",
+        data: {
+            name: '小刘'
+        },
+        components: {
+            login,
+        }
+    })
+</script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06.vue组件中定义组件的data,methods,computed以及声明周期函数使用</title>
+</head>
+<body>
+<div id="app">
+    <users></users>
+    <users></users>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    //定义局部用户列表组件配置对象
+
+    const users = {
+        template: `
+            <div>
+                <h3>用户列表</h3>
+                <h3>{{count}}---{{countSqrt}}</h3>
+                <button @click="changeCount">+</button>
+                <ul>
+                    <li v-for="item in items">{{item}}</li>
+                </ul>
+            </div>`, //定义组件html内容
+        /*data: {
+            count: 0 //The "data" option should be a function that returns a per-instance value in component definitions.
+        }*/
+        data() {//用来给当前的组件定义一系列数据；注意：在组件中定义的数据只能在当前组件可用
+            return {
+                count: 1,
+                items: []
+            };
+        },
+        methods: { //用来给当前组件定义一系列事件
+            changeCount() {
+                this.count++;  //组件的复用机制：这里的话如果有两个一样的组件，那么单独自增，不会相互影响
+            }
+        },
+        computed: { //用来给当前组件定义一系列计算属性，用来对页面中结果进行二次计算处理
+            countSqrt() {
+                return this.count * this.count;
+            }
+        },
+        beforeCreate() { //组件开始初始化，仅仅注册逐渐自己事件和声明周期函数,
+        },
+        created() {//组件已经注入data methods computed相关数据方法
+            this.items = ["河南校区", "北京校区", "天津校区"];
+        },
+        beforeMount() {//将template中指向的html编译成vue中的模板，此时还没有完成模板中内容的渲染
+        },
+        mounted() {//将template中编译完的模板进行数据渲染，并且将渲染完成的数据在内存中形成虚拟dom，替换template指向的dom
+        },
+        beforeUpdate() {//当组件中的数据发生变化时，会触发beforeUpdate，此时页面中的数据还是原始数据
+        },
+        updated() {//此时页面中的数据和data数据一致
+        },
+        beforeDestroy() {//销毁vue实例之前触发的方法
+        },
+        destroy() {//vue实例已经彻底销毁 监听机制全部消失
+        }
+    }
+
+    new Vue({
+        el: "#app",
+        data: {},
+        components: {
+            users, //注册组件
+        }
+    })
+</script>

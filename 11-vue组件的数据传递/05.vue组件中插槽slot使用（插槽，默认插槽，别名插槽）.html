@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件中插槽slot使用（插槽，默认插槽，别名插槽）</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+
+    <login><h5 slot="bb">我是插槽1</h5></login>
+    <hr>
+    <login>
+        <button>+++</button>
+    </login>
+    <hr>
+    <login><h4>我是插槽3</h4></login>
+    <hr>
+    <login><input type="text"></login>
+    <hr>
+    <login></login>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+
+    //slot：用来扩展自定义组件让组件变得更加灵活 用来个性化定制自己的组件  注意：插槽必须配合组件才能使用
+    //如果插槽使用了name 那么必须指定name。不然都会变成默认的
+    const login = {
+        template: `<div>
+                    <slot name="aa"><span>默认扩展</span></slot>
+                    <h3>用户登录界面</h3>
+                    <slot name="bb"></slot>
+                   </div>`
+    }
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "插槽的使用"
+        },
+        components: {
+            login
+        }
+    })
+</script>

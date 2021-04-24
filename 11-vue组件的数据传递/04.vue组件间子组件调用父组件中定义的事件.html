@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件间子组件调用父组件中定义的事件</title>
+</head>
+<body>
+<div id="app">
+
+    <h3>{{msg}}</h3>
+
+    <!--使用局部组件 传递一个父组件中事件  @别名：代表想组件中传递一个事件，事件名为aa value='findAll'，代表将父组件中指定事件传递给子组件-->
+    <login @aa="findAll" @test="test"></login>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+
+    //如何将父组件中的事件传递给子组件中 1、使用@别名="传递事件名" 2、在组件中他调用传递的事件时 this.$emit('别名')
+
+    //定义一个登录组件配置对象
+    const login = {
+        template: `
+            <div>
+                <h3>用户登录</h3>
+                <button @click="test">点我触发事件</button>
+            </div>`,
+        data() {
+            return {
+                msg: "我是子组件的信息"
+            }
+        },
+        methods: {
+            test() {
+                alert("子组件中的事件");
+                //调用父组件中findAll事件 this.$emit();
+                this.$emit('aa');
+                this.$emit('test', this.msg); //调用父组件中传递的事件并且传递参数
+            }
+        }
+    }
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "vue 中组件开发",
+        },
+        components: {
+            login
+        },
+        methods: {
+            findAll() {
+                alert("父组件中定义的事件...");
+            },
+            test(msg) {
+                alert("父组件中定义的test..." + msg);
+                this.msg = msg;
+            }
+        }
+    })
+</script>
