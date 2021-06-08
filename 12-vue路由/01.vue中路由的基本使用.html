@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue路由的基本使用</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+
+    <!--指定路由组件在哪里展示 router-view标签  作用：用来展示路由对应组件显示的位置-->
+    <router-view></router-view>
+
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script src="../vue-router.js"></script>
+<script src="../axios.min.js"></script>
+<script>
+    //创建组件配置对象
+    const users = {
+        template: `<div><h3>用户管理</h3></div>`
+    }
+    const emps = {
+        template: `<div><h3>员工管理</h3></div>`
+    }
+
+    //创建路由对象并定义路由规则
+    const router = new VueRouter({
+        routes: [
+            //path：用来指定对应的请求路径  component：指定对应的组件
+            {path: '/users', component: users}, //用来定义具体的某个组件的规则
+            {path: '/emps', component: emps}
+        ] //用来定义一系列规则
+    });
+    const app = new Vue({
+        el: '#app',
+        data: {
+            msg: "vue中route（路由）的使用"
+        },
+        methods: {},
+        computed: {},
+        components: {},//注册局部组件
+        router: router,//用来注册路由配置r
+    })
+</script>
