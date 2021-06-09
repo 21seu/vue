@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue路由中的参数传递</title>
+</head>
+<body>
+<div id="app">
+    <!--切换路由-->
+    <!--1、获取?后传递参数 this.$route.query.key-->
+    <router-link to="/users?deptId=21">用户管理</router-link>
+    <!--2、获取路由路径中参数 rest方式参数获取-->
+    <router-link to="/emps/11">员工管理</router-link>
+    <router-view></router-view>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script src="../vue-router.js"></script>
+<script src="../axios.min.js"></script>
+<script>
+    //创建组件配置对象
+    const users = {
+        template: `
+            <div><h3>用户管理</h3></div>`,
+        data() {
+            return {};
+        },
+        methods: {},
+        created() {
+            //获取路由路径中参数 1、获取queryString(url?deptId=21)中传递参数
+            console.log(this.$route.query.deptId);
+        }
+    }
+    const emps = {
+        template: `<div><h3>员工管理</h3></div>`,
+        created() {
+            console.log(this.$route.params.id); //获取路径中的参数
+        }
+    }
+    //创建路由对象
+    const vueRouter = new VueRouter({
+        routes: [
+            {path: "/", redirect: '/users'},//默认路由规则  redirect:(路由路径重定向)
+            {path: '/users', name: "users", component: users}, //用户组件路由规则  name:路由名称 必须唯一
+            {path: '/emps/:id', name: "emps", component: emps}
+        ]
+    });
+
+    const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        router: vueRouter,//注册路由
+    })
+</script>
