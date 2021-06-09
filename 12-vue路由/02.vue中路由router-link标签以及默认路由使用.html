@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中路由router-link标签以及默认路由使用</title>
+</head>
+<body>
+<div id="app">
+    <!--router-view 路由组件位置展示-->
+    <router-view></router-view>
+    <!--route-link  作用：替换a标签来实现路由切换，好处：书写路径时不需要显示加入#   tag：（默认为a标签）用来指定router-link底层渲染标签-->
+    <router-link to="/users" tag="button">用户管理</router-link>
+    <router-link to="/emps" tag="button">员工管理</router-link>
+    <!--通过a标签进行路由切换-->
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script src="../vue-router.js"></script>
+<script src="../axios.min.js"></script>
+<script>
+    //创建组件配置对象
+    const users = {
+        template: `<div><h3>用户管理</h3></div>`
+    }
+    const emps = {
+        template: `<div><h3>员工管理</h3></div>`
+    }
+    //创建路由对象
+    const vueRouter = new VueRouter({
+        routes: [
+            {path: "/", /*component: users*/redirect: '/users'},//默认路由规则  redirect:(路由路径重定向)
+            {path: '/users', component: users}, //用户组件路由规则
+            {path: '/emps', component: emps}
+        ]
+    });
+
+    const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        router: vueRouter,//注册路由
+    })
+</script>
