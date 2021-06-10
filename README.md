@@ -658,3 +658,230 @@ View:  页面  页面展示的数据
     })
 </script>
 ```
+
+### 8.2 购物车案例
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车案例</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>名称</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>小计</th>
+        </tr>
+        <!--v-for遍历vue实例中的数据--> <!--:key作用：https://www.zhihu.com/question/61064119-->
+        <tr v-for="(item,index) in items" :key="items.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td><input type="button" value="-" @click="decrCount(index)"/>{{item.count}}<input type="button" value="+"
+                                                                                               @click="incrCount(index)"/>
+            </td>
+            <td>{{(item.price * item.count).toFixed(2)}}</td>
+        </tr>
+
+    </table>
+    <h3>总价格：{{getTotalPrice()}}</h3>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app", //代表vue实例的作用范围
+        data: {
+            msg: "购物车功能实现",
+            items: [
+                {id: 1, name: "iphone12", count: 1, price: 6999.0},
+                {id: 2, name: "HUAWEI Pro", count: 1, price: 4999.0}
+            ]
+        },
+        methods: {
+            incrCount(index) {
+                this.items[index].count++;
+            },
+            decrCount(index) {
+                if (this.items[index].count < 1) {
+                    alert("所买的商品不能再少了！！！");
+                    return;
+                }
+                this.items[index].count--;
+            },
+            getTotalPrice() {
+                var totalPrice = 0;
+                for (let val of this.items) {
+                    console.log("debug=====>", val);
+                    totalPrice += val.count * val.price;
+                }
+                return totalPrice.toFixed(2);
+            }
+        }
+    })
+</script>
+```
+
+### 8.3 购物车案例之总价格methods实现
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车案例之总价格methods实现</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>名称</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>小计</th>
+        </tr>
+        <!--v-for遍历vue实例中的数据--> <!--:key作用：https://www.zhihu.com/question/61064119-->
+        <tr v-for="(item,index) in items" :key="items.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td><input type="button" value="-" @click="decrCount(index)"/>{{item.count}}<input type="button" value="+"
+                                                                                               @click="incrCount(index)"/>
+            </td>
+            <td>{{(item.price * item.count).toFixed(2)}}</td>
+        </tr>
+
+    </table>
+    <!--
+        使用methods方法完成计算业务：
+        缺点：
+            1、只要调用了一次计算方法，整个计算方法就会执行一次，如果在一个页面中多次使用到计算结果，可能会造成重复计算，导致页面
+               加载性能变慢。
+    -->
+    <h3>总价格：{{getTotalPrice()}}</h3>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app", //代表vue实例的作用范围
+        data: {
+            msg: "购物车功能实现",
+            items: [
+                {id: 1, name: "iphone12", count: 1, price: 6999.0},
+                {id: 2, name: "HUAWEI Pro", count: 1, price: 4999.0}
+            ]
+        },
+        methods: {
+            incrCount(index) {
+                this.items[index].count++;
+            },
+            decrCount(index) {
+                if (this.items[index].count < 1) {
+                    alert("所买的商品不能再少了！！！");
+                    return;
+                }
+                this.items[index].count--;
+            },
+            getTotalPrice() {
+                var totalPrice = 0;
+                for (let val of this.items) {
+                    console.log("debug=====>", val);
+                    totalPrice += val.count * val.price;
+                }
+                return totalPrice.toFixed(2);
+            }
+        }
+    })
+</script>
+```
+
+### 8.4 购物车案例之总价格computed实现
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车案例之总价格computed实现</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>名称</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>小计</th>
+        </tr>
+        <!--v-for遍历vue实例中的数据--> <!--:key作用：https://www.zhihu.com/question/61064119-->
+        <tr v-for="(item,index) in items" :key="items.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td><input type="button" value="-" @click="decrCount(index)"/>{{item.count}}<input type="button" value="+"
+                                                                                               @click="incrCount(index)"/>
+            </td>
+            <td>{{(item.price * item.count).toFixed(2)}}</td>
+        </tr>
+
+    </table>
+    <!--
+        使用computed方法完成计算业务：
+        computed：vue官方提供的一个计算属性   ！！！记住：是一个属性
+            作用：在完成某种业务时，往往页面结果需要经过多次计算才能获取，computed属性就是用来完成业务结果多次计算
+            好处：在完成计算的同时也会将本次计算结果进行缓存，如果数据没有发生变化，在页面中多次使用，计算方法仅仅计算一次
+    -->
+    <h3>总价格：{{totalPrice}}</h3>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app", //代表vue实例的作用范围
+        data: {
+            msg: "购物车功能实现",
+            items: [
+                {id: 1, name: "iphone12", count: 1, price: 6999.0},
+                {id: 2, name: "HUAWEI Pro", count: 1, price: 4999.0}
+            ]
+        },
+        methods: {
+            incrCount(index) {
+                this.items[index].count++;
+            },
+            decrCount(index) {
+                if (this.items[index].count < 1) {
+                    alert("所买的商品不能再少了！！！");
+                    return;
+                }
+                this.items[index].count--;
+            }
+        },
+        computed: { //计算属性：用来书写计算相关方法(好处：只进行一次计算，后面使用直接使用它的缓存)
+            totalPrice() {
+                var totalPrice = 0;
+                for (let val of this.items) {
+                    console.log("debug=====>", val);
+                    totalPrice += val.count * val.price;
+                }
+                return totalPrice.toFixed(2);
+            }
+        }
+    })
+</script>
+```
