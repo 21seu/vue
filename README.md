@@ -885,3 +885,372 @@ View:  页面  页面展示的数据
     })
 </script>
 ```
+
+## 9、事件修饰符
+
+> 用来和事件连用，用来决定事件触发条件或者是阻止事件的触发机制。
+
+```markdown
+# 1.常用的事件修饰符
+.stop           停止
+.prevent        阻止
+.self           独自
+.oncea          一次
+```
+
+### 9.1 stop事件修饰符
+
+> 用来阻止阻止事件冒泡
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符stop</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        事件修饰符：用来和事件连用，用来决定事件触发的条件和决定事件触发机制
+        .stop   停止事件冒泡
+        .prevent
+        .self
+        .once
+        注意：事件修饰符可以多个连续使用
+    -->
+    <!--.stop：用来阻止事件的冒泡-->
+    <!--这里的点击事件（事件的冒泡）会有问题：你点击子div 父div的事件也会触发-->
+    <div style="width: 200px;height: 200px;background: red" @click="parent">
+        <!--解决：对孩子中单击事件进行修饰：不进行事件的冒泡处理 .stop-->
+        <div style="width: 100px;height: 100px;background: green" @click.stop.once="child"></div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "事件修饰符"
+        },
+        methods: {
+            parent() {
+                alert("parent div event");
+            },
+            child() {
+                alert("child div event");
+            }
+        },
+        computed: {}
+    })
+</script>
+```
+
+### 9.2 prevent事件修饰符
+
+> 用来阻止标签的每默认行为
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符prevent</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        事件修饰符：用来和事件连用，用来决定事件触发的条件和决定事件触发机制
+        .stop   停止事件冒泡
+        .prevent    阻止默认行为
+        .self
+        .once
+        注意：事件修饰符可以多个连续使用
+    -->
+    <!--默认行为：会根据href的链接自动跳转   prevent则可以阻止这种默认行为-->
+    <a href="http://www.baidu.com" @click.prevent="search">百度一下</a>
+    <!--当然也可以这样-->
+    <a href="javascript:;" @click="search">百度一下</a>
+    <a href="javascript:void(0);" @click="search">百度一下</a>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "事件修饰符"
+        },
+        methods: {
+            search() {
+                alert("a click!!!");
+            }
+        },
+        computed: {}
+    })
+</script>
+```
+
+### 9.3 self事件修饰符
+
+> 用来针对当前标签的事件触发 ====> 只触发自己标签上特定动作的事件，只关心自己标签上触发的事件，不监听事件冒泡。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符self</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        事件修饰符：用来和事件连用，用来决定事件触发的条件和决定事件触发机制
+        .stop   停止事件冒泡
+        .prevent    阻止默认行为
+        .self   只触发自身行为
+        .once
+        注意：事件修饰符可以多个连续使用
+    -->
+    <!--.self：只监听自身标签触发的对应事件-->
+    <div style="width: 200px;height: 200px;background: aqua" @click.self="parent">
+        <!--解决：对孩子中单击事件进行修饰：不进行事件的冒泡处理 .stop-->
+        <div style="width: 100px;height: 100px;background: green" @click="child"></div>
+        <div style="width: 100px;height: 100px;background: brown" @click="child"></div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "事件修饰符"
+        },
+        methods: {
+            parent() {
+                alert("parent div event");
+            },
+            child() {
+                alert("child div event");
+            }
+        },
+        computed: {}
+    })
+</script>
+```
+
+### 9.4 once事件修饰符
+
+> once一次作用：就是让指定事件只触发一次
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符once</title>
+</head>
+<body>
+<div id="app">
+    <h2>{{msg}}</h2>
+
+    <!--
+        事件修饰符：用来和事件连用，用来决定事件触发的条件和决定事件触发机制
+        .stop   停止事件冒泡
+        .prevent    阻止默认行为
+        .self   只触发自身行为
+        .once   一次事件
+        注意：事件修饰符可以多个连续使用
+    -->
+    <!--once：只能让标签上的对应事件执行一次-->
+    <input type="button" value="点我" @click.once="clickMe">
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "事件修饰符"
+        },
+        methods: {
+            clickMe() {
+                alert("click me !!!!")
+            }
+        },
+        computed: {}
+    })
+</script>
+```
+
+
+
+## 10、按键修饰符
+
+> 用来与键盘中按键事件绑定在一起，用来修饰特定的按键事件的修饰符
+
+```markdown
+# 按键修饰符
+    .enter
+    .tab
+    .delete (捕获“删除”和“退格”键)
+    .esc
+    .space
+    .up
+    .down
+    .left
+    .right
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的按键修饰符</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+
+    <!--
+        案件修饰符：用来键盘上按键事件进行连用，用来修饰键盘上特定的按键来触发对应的事件
+        .enter
+        .tab
+        .delete（捕获”删除“和“退格”键）
+        .esc
+        .space
+        .up
+        .down
+        .left
+        .right
+    -->
+    <!--.enter 回车键修饰符-->
+    <input type="text" v-model="msg" @keyup.enter.delete.up="test"/>
+</div>
+</body>
+</html>
+<script src="../vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "按键修饰符"
+        },
+        methods: {
+            test() {
+                console.log("test");
+            }
+        }
+    })
+</script>
+```
+
+
+
+## 11、[Axios](http://www.axios-js.com/)
+
+> `Axios` 是一个异步请求技术,核心作用就是用来在页面中发送异步请求,并获取对应数据在页面中渲染       页面局部更新技术还有Ajax
+
+![image.png](https://cdn.nlark.com/yuque/0/2021/png/12759906/1623742787599-b08d0c07-d977-480d-a9fd-69e0ec28c47e.png)
+
+
+
+### 11.1 安装
+
+- 使用npm
+
+```shell
+$ npm install axios
+```
+
+
+
+- 使用bower
+
+```shell
+$ bower install axios
+```
+
+
+
+- 使用cdn
+
+```html
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+```
+
+
+
+### 11.2 GET方式的请求
+
+```javascript
+//发送axios GET方式请求
+    axios.get("http://localhost:8989/demo").then(function (response) {//发送异步请求获取结果
+        console.log(response.data);
+    }).catch(function (error) { //请求地址出错的处理结果
+        console.log(error);
+    });
+
+    //axios传递参数
+    axios.get("http://localhost:8989/user?id=11").then(function (response) {
+        //直接能拿到js对象
+        console.log(response.data);
+    });
+
+    //es6语法中的箭头函数简化
+    axios.get("http://localhost:8989/user/11").then(response => {
+        console.log(response.data)
+    });
+```
+
+
+
+### 11.3 POST方式的请求
+
+```javascript
+//发送axios POST方式请求
+    axios.post("http://localhost:8989/user", {
+        name: "小刘",
+        age: 23,
+        bir: "2021-04-18"
+    }).then(response => {
+        console.log(response.data);
+    });
+```
+
+
+
+### 11.4 并发请求（新版本已过时）
+
+```javascript
+function demo() {
+        return axios.get('http://localhost:8989/user/?id=11');
+    }
+
+    function demo2() {
+        return axios.get('http://localhost:8989/demo');
+    }
+
+    //并发请求
+    axios.all([demo(), demo2()]).then(axios.spread((res1, res2) => {
+        console.log(res1);
+        console.log(res2);
+    }));
+```
+
+
+
+## 12、vue生命周期
