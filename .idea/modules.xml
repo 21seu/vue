@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/vuedemo/springbootdemo.iml" filepath="$PROJECT_DIR$/vuedemo/springbootdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/vue-first.iml" filepath="$PROJECT_DIR$/.idea/vue-first.iml" />
       <module fileurl="file://$PROJECT_DIR$/vue_admin/vue_admin.iml" filepath="$PROJECT_DIR$/vue_admin/vue_admin.iml" />
     </modules>
