@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/vuedemo/springbootdemo.iml" filepath="$PROJECT_DIR$/vuedemo/springbootdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/vue-first.iml" filepath="$PROJECT_DIR$/.idea/vue-first.iml" />
       <module fileurl="file://$PROJECT_DIR$/vue_admin/vue_admin.iml" filepath="$PROJECT_DIR$/vue_admin/vue_admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vue_pro1/vue_pro1.iml" filepath="$PROJECT_DIR$/vue_pro1/vue_pro1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vue_pro_be/vue_pro_be.iml" filepath="$PROJECT_DIR$/vue_pro_be/vue_pro_be.iml" />
     </modules>
   </component>
 </project>

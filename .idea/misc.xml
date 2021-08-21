@@ -8,6 +8,8 @@
       <list>
         <option value="$PROJECT_DIR$/vue_admin/pom.xml" />
         <option value="$PROJECT_DIR$/vuedemo/pom.xml" />
+        <option value="$PROJECT_DIR$/vue_pro1/pom.xml" />
+        <option value="$PROJECT_DIR$/vue_pro_be/pom.xml" />
       </list>
     </option>
   </component>
