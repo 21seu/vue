@@ -1,6 +1,8 @@
 package com.ftj.service;
 
 import com.ftj.pojo.Book;
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 /**
@@ -8,6 +10,13 @@ import java.util.List;
  */
 public interface BookService {
 
-    List<Book> getBookList();
+    Page<Book> getBookList(Integer page, Integer size);
 
+    Book save(Book book);
+
+    Book findBookById(Integer id);
+
+    Book update(Integer id, Book book);
+
+    void deleteBookById(Integer id);
 }

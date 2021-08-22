@@ -8,42 +8,29 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        name: '导航',
+        name: '图书管理',
         component: Index,
-        redirect:"/pageOne",
+        redirect: "/showBooks",
         children: [
-          {
-            path: '/pageOne',
-            name: '页面1',
-            component: () => import(/* webpackChunkName: "about" */ '../views/page/PageOne.vue')
-          },
-          {
-            path: '/pageTwo',
-            name: '页面2',
-            component: () => import(/* webpackChunkName: "about" */ '../views/page/PageTwo.vue')
-          }
+            {
+                path: '/showBooks',
+                name: '查询图书',
+                show:true,
+                component: () => import(/* webpackChunkName: "about" */ '../views/page/ShowBooks.vue')
+            },
+            {
+                path: '/addBooks',
+                name: '添加图书',
+                show:true,
+                component: () => import(/* webpackChunkName: "about" */ '../views/page/AddBooks.vue')
+            },
+            {
+                path: '/update',
+                show:false,
+                component: () => import(/* webpackChunkName: "about" */ '../views/page/UpdateBooks.vue')
+            }
         ]
     },
-  {
-    path: '/nav',
-    name: '导航2',
-    component: Index,
-    children: [
-      {
-        path: '/pageThree',
-        name: 'pageThree',
-        component: () => import(/* webpackChunkName: "about" */ '../views/page/PageOne.vue')
-      }
-    ]
-  }/*,
-    {
-        path: '/about',
-        name: 'About',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/!* webpackChunkName: "about" *!/ '../views/About.vue')
-    }*/
 
 ]
 
